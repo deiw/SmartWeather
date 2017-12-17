@@ -9,7 +9,6 @@ import pl.majorczyk.weatherapp.model.Weather;
 import pl.majorczyk.weatherapp.model.WeatherDetails;
 
 @Component
-@Parser(type = Parser.ParserType.WEATHER)
 public class JsonWeatherParser implements DataParser<Weather> {
     @Override
     public Weather parse(String response) {
