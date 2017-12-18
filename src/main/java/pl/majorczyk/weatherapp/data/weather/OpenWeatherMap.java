@@ -22,22 +22,25 @@ public class OpenWeatherMap implements DataProvider {
     }
 
     @Override
-    public Weather getWeather(String path) throws IOException {
+    public Weather getWeather(String path){
         Weather weather=null;
-        URL url=new URL(path);
-        HttpURLConnection connection=(HttpURLConnection)url.openConnection();
-        connection.connect();
-        int responseCode=connection.getResponseCode();
-        if(responseCode==200){
-            BufferedReader reader=new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder sb=new StringBuilder();
-            String line;
-            while ((line=reader.readLine())!=null){
-                sb.append(line);
+        try {
+            URL url = new URL(path);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+                weather = parser.parse(sb.toString());
             }
-            weather=parser.parse(sb.toString());
+        }catch (IOException e){
+            e.printStackTrace();
         }
-
         return weather;
     }
 }

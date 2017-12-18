@@ -8,14 +8,17 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
-public class CitiesIdProvider {
+public class CitiesProvider {
 
-    private HashMap<String,String> cities;
+    private Map<String,String> cities;
 
-    CitiesIdProvider(){
+    CitiesProvider(){
         if(cities==null){
             load();
         }
@@ -41,5 +44,15 @@ public class CitiesIdProvider {
 
     public String getCityId(String name) {
         return cities.get(name);
+    }
+
+    public List<String> getCities(String search){
+        List<String> cityList=new ArrayList<>();
+        for(String s:cities.keySet()){
+            if(s.toLowerCase().contains(search.toLowerCase())){
+                cityList.add(s);
+            }
+        }
+        return cityList;
     }
 }
