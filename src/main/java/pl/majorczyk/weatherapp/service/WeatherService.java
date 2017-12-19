@@ -22,7 +22,7 @@ public class WeatherService {
     }
 
     public Weather getWeather(String city, String type){
-        String path=URL+type+"?id="+cityProvider.getCityId(city)+KEY;
+        String path=URL+type+"?id="+cityProvider.getCityId(city)+KEY+"&units=metric";
         return weatherProvider.getWeather(path);
     }
 }
