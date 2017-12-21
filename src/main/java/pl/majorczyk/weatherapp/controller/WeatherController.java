@@ -3,7 +3,9 @@ package pl.majorczyk.weatherapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import pl.majorczyk.weatherapp.locator.Locator;
 import pl.majorczyk.weatherapp.model.Weather;
@@ -11,9 +13,14 @@ import pl.majorczyk.weatherapp.service.WeatherService;
 
 import javax.servlet.http.HttpServletRequest;
 
+     /*
+        @response 401: no location founded for ip
+        @response 402: no weather founded for location
+     */
+
 @RestController
 @RequestMapping("/")
-public class HomeController {
+public class WeatherController {
 
     private static final String CURRENT="weather";
 
@@ -21,28 +28,35 @@ public class HomeController {
     private Locator locator;
 
     @Autowired
-    public HomeController(WeatherService service, Locator locator) {
+    public WeatherController(WeatherService service, Locator locator) {
         this.service = service;
         this.locator = locator;
     }
-      /*
-        @response 401: no location founded for ip
-        @response 402: no weather founded for location
-     */
+
     @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Weather> index(HttpServletRequest request){
-        Weather weather;
+    public ResponseEntity<Weather> getLocationWeather(HttpServletRequest request){
         //String ip=request.getHeader("for");
         String city=locator.locate("83.145.158.238");
         if(city==null){
            return ResponseEntity.status(401).build();
         }
         else {
-            weather=service.getWeather(city,CURRENT);
-            if(weather==null){
-                return ResponseEntity.status(402).build();
-            }
-            else return ResponseEntity.ok(weather);
+            return checkWeather(city);
         }
+    }
+    @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+            method = RequestMethod.GET,
+            path = "/city/{city}")
+    public ResponseEntity<Weather> getCityWeather(@PathVariable String city){
+        return checkWeather(city);
+    }
+
+    private ResponseEntity<Weather> checkWeather(String city){
+        Weather weather;
+        weather=service.getWeather(city,CURRENT);
+        if(weather==null){
+            return ResponseEntity.status(402).build();
+        }
+        else return ResponseEntity.ok(weather);
     }
 }
