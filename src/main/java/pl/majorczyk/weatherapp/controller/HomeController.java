@@ -33,7 +33,7 @@ public class HomeController {
     public ResponseEntity<Weather> index(HttpServletRequest request){
         Weather weather;
         //String ip=request.getHeader("for");
-        String city=locator.locate("153.19.108.41");
+        String city=locator.locate("83.145.158.238");
         if(city==null){
            return ResponseEntity.status(401).build();
         }

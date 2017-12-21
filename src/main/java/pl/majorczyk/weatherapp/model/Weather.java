@@ -1,13 +1,21 @@
 package pl.majorczyk.weatherapp.model;
 
 public class Weather {
+    private String city;
     private String main;
     private String temp;
     private String pressure;
-    private String visibility;
     private WeatherDetails details;
 
     public Weather() {
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getMain() {
@@ -32,14 +40,6 @@ public class Weather {
 
     public void setPressure(String pressure) {
         this.pressure = pressure;
-    }
-
-    public String getVisibility() {
-        return visibility;
-    }
-
-    public void setVisibility(String visibility) {
-        this.visibility = visibility;
     }
 
     public WeatherDetails getDetails() {

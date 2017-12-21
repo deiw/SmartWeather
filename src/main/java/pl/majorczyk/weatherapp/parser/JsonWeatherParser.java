@@ -26,10 +26,10 @@ public class JsonWeatherParser implements DataParser<Weather> {
                 weather=new Weather();
                 WeatherDetails details=new WeatherDetails();
 
+                weather.setCity(data.get("name").toString());
                 weather.setMain(basic.get("main").toString());
                 weather.setTemp(main.get("temp").toString());
                 weather.setPressure(main.get("pressure").toString());
-                weather.setVisibility(data.get("visibility").toString());
 
                 details.setDescription(basic.get("description").toString());
                 details.setHumidity(main.get("humidity").toString());
