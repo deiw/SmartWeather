@@ -54,8 +54,11 @@ public class WeatherController {
             method = RequestMethod.GET,
             path = "/forecast/{city}")
     public ResponseEntity<List<Weather>> getForecastWeather(@PathVariable String city){
-        List<Weather> forecast=service.getForecastWeather(city);
-        return ResponseEntity.ok(forecast);
+        List<Weather> list=service.getForecastWeather(city);
+        if(list==null){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(list);
     }
 
     private ResponseEntity<Weather> checkCurrentWeather(String city){
