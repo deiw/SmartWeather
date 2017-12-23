@@ -1,4 +1,4 @@
-package pl.majorczyk.weatherapp.model;
+package pl.majorczyk.weatherapp.model.weather;
 
 public class Weather {
     private String city;

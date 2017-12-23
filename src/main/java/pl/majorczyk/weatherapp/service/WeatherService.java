@@ -3,7 +3,7 @@ package pl.majorczyk.weatherapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.majorczyk.weatherapp.data.weather.DataProvider;
-import pl.majorczyk.weatherapp.model.Weather;
+import pl.majorczyk.weatherapp.model.weather.Weather;
 import pl.majorczyk.weatherapp.parser.WeatherParser;
 import pl.majorczyk.weatherapp.utils.CitiesProvider;
 

@@ -5,9 +5,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Component;
-import pl.majorczyk.weatherapp.model.ForecastWeather;
-import pl.majorczyk.weatherapp.model.Weather;
-import pl.majorczyk.weatherapp.model.WeatherDetails;
+import pl.majorczyk.weatherapp.model.weather.ForecastWeather;
+import pl.majorczyk.weatherapp.model.weather.Weather;
+import pl.majorczyk.weatherapp.model.weather.WeatherDetails;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package pl.majorczyk.weatherapp.parser;
 
-import pl.majorczyk.weatherapp.model.Weather;
+import pl.majorczyk.weatherapp.model.weather.Weather;
 
 import java.util.List;
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import pl.majorczyk.weatherapp.locator.Locator;
-import pl.majorczyk.weatherapp.model.Weather;
+import pl.majorczyk.weatherapp.model.weather.Weather;
 import pl.majorczyk.weatherapp.service.WeatherService;
 
 import javax.servlet.http.HttpServletRequest;
