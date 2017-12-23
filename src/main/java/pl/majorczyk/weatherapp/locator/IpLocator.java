@@ -2,7 +2,7 @@ package pl.majorczyk.weatherapp.locator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.majorczyk.weatherapp.parser.DataParser;
+import pl.majorczyk.weatherapp.parser.CityParser;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -12,10 +12,10 @@ import javax.ws.rs.core.Response;
 @Component
 public class IpLocator implements Locator {
 
-    private DataParser<String> parser;
+    private CityParser parser;
 
     @Autowired
-    public IpLocator(DataParser<String> parser) {
+    public IpLocator(CityParser parser) {
         this.parser = parser;
     }
 

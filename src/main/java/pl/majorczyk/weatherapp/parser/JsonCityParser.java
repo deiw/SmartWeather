@@ -6,7 +6,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JsonCityParser implements DataParser<String> {
+public class JsonCityParser implements CityParser {
     @Override
     public String parse(String response) {
         String city=null;

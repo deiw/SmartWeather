@@ -12,6 +12,7 @@ import pl.majorczyk.weatherapp.model.Weather;
 import pl.majorczyk.weatherapp.service.WeatherService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
      /*
         @response 401: no location founded for ip
@@ -21,8 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/")
 public class WeatherController {
-
-    private static final String CURRENT="weather";
 
     private WeatherService service;
     private Locator locator;
@@ -41,19 +40,27 @@ public class WeatherController {
            return ResponseEntity.status(401).build();
         }
         else {
-            return checkWeather(city);
+            return checkCurrentWeather(city);
         }
     }
     @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE,
             method = RequestMethod.GET,
-            path = "/city/{city}")
-    public ResponseEntity<Weather> getCityWeather(@PathVariable String city){
-        return checkWeather(city);
+            path = "/current/{city}")
+    public ResponseEntity<Weather> getCurrentWeather(@PathVariable String city){
+        return checkCurrentWeather(city);
     }
 
-    private ResponseEntity<Weather> checkWeather(String city){
+    @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+            method = RequestMethod.GET,
+            path = "/forecast/{city}")
+    public ResponseEntity<List<Weather>> getForecastWeather(@PathVariable String city){
+        List<Weather> forecast=service.getForecastWeather(city);
+        return ResponseEntity.ok(forecast);
+    }
+
+    private ResponseEntity<Weather> checkCurrentWeather(String city){
         Weather weather;
-        weather=service.getWeather(city,CURRENT);
+        weather=service.getCurrentWeather(city);
         if(weather==null){
             return ResponseEntity.status(402).build();
         }

@@ -3,8 +3,6 @@ package pl.majorczyk.weatherapp.model;
 public class WeatherDetails {
     private String description;
     private String humidity;
-    private String tempMin;
-    private String tempMax;
     private String windSpeed;
     private String clouds;
 
@@ -25,22 +23,6 @@ public class WeatherDetails {
 
     public void setHumidity(String humidity) {
         this.humidity = humidity;
-    }
-
-    public String getTempMin() {
-        return tempMin;
-    }
-
-    public void setTempMin(String tempMin) {
-        this.tempMin = tempMin;
-    }
-
-    public String getTempMax() {
-        return tempMax;
-    }
-
-    public void setTempMax(String tempMax) {
-        this.tempMax = tempMax;
     }
 
     public String getWindSpeed() {
